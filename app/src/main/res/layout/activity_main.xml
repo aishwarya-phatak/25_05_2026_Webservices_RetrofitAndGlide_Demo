@@ -8,35 +8,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txtViewForProductId"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewForProducts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="20dp" />
-
-    <TextView
-        android:id="@+id/txtViewForProductTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp" />
-
-    <TextView
-        android:id="@+id/txtViewForProductPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp" />
-
-    <ImageView
-        android:id="@+id/imgViewForProduct"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp" />
 
 </LinearLayout>

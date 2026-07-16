@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        txtViewForProductId = findViewById(R.id.txtViewForProductId);
-        txtViewForProductTitle = findViewById(R.id.txtViewForProductTitle);
-        txtViewForProductPrice = findViewById(R.id.txtViewForProductPrice);
-        imgViewForProduct = findViewById(R.id.imgViewForProduct);
+//        txtViewForProductId = findViewById(R.id.txtViewForProductId);
+//        txtViewForProductTitle = findViewById(R.id.txtViewForProductTitle);
+//        txtViewForProductPrice = findViewById(R.id.txtViewForProductPrice);
+//        imgViewForProduct = findViewById(R.id.imgViewForProduct);
 
         ProductService productService = ProductService.getInstance();
 
@@ -42,16 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful() && response.body() != null){
                     Product product = response.body().getProducts().get(0);
 
-                    txtViewForProductId.setText(product.getId() + "");
-                    txtViewForProductTitle.setText(product.getTitle());
-                    txtViewForProductPrice.setText(product.getPrice() + "");
-
-                    //image loading using Glide
-                    Glide.with(MainActivity.this)
-                            .load(product.getThumbnail())
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .centerCrop()
-                            .into(imgViewForProduct);
+//                    txtViewForProductId.setText(product.getId() + "");
+//                    txtViewForProductTitle.setText(product.getTitle());
+//                    txtViewForProductPrice.setText(product.getPrice() + "");
+//
+//                    //image loading using Glide
+//                    Glide.with(MainActivity.this)
+//                            .load(product.getThumbnail())
+//                            .placeholder(R.drawable.ic_launcher_background)
+//                            .centerCrop()
+//                            .into(imgViewForProduct);
 
                 }
             }
