@@ -1,5 +1,6 @@
 package com.example.a25_05_2026_webservices_retrofitandglide_demo;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,15 @@ public class ProductAdapter extends
             txtViewForProductId = itemView.findViewById(R.id.txtViewForProductId);
             txtViewForProductTitle = itemView.findViewById(R.id.txtViewForProductTitle);
             txtViewForProductPrice = itemView.findViewById(R.id.txtViewForProductPrice);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), ProductDetailsActivity.class);
+                    intent.putExtra("product", products.get(getAdapterPosition()));
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
@@ -61,6 +71,6 @@ public class ProductAdapter extends
 
     @Override
     public int getItemCount() {
-        return 0;
+        return products.size();
     }
 }

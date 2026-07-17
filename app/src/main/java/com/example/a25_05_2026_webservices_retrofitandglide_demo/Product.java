@@ -1,6 +1,8 @@
 package com.example.a25_05_2026_webservices_retrofitandglide_demo;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     int id;
     String title;
     Double price;

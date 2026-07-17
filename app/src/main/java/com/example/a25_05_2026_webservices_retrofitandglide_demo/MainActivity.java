@@ -9,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 import retrofit2.Call;
@@ -20,8 +23,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtViewForProductId, txtViewForProductTitle, txtViewForProductPrice;
-    ImageView imgViewForProduct;
+    RecyclerView recyclerViewForProducts;
+    ArrayList<Product> productArrayList = new ArrayList<Product>();
+    ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-//        txtViewForProductId = findViewById(R.id.txtViewForProductId);
-//        txtViewForProductTitle = findViewById(R.id.txtViewForProductTitle);
-//        txtViewForProductPrice = findViewById(R.id.txtViewForProductPrice);
-//        imgViewForProduct = findViewById(R.id.imgViewForProduct);
+        recyclerViewForProducts = findViewById(R.id.recyclerViewForProducts);
+        recyclerViewForProducts.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL,
+                false)
+        );
+        productAdapter = new ProductAdapter(productArrayList);
+        recyclerViewForProducts.setAdapter(productAdapter);
 
         ProductService productService = ProductService.getInstance();
 
@@ -40,19 +47,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
-                    Product product = response.body().getProducts().get(0);
+//                    Product product = response.body().getProducts().get(0);
 
-//                    txtViewForProductId.setText(product.getId() + "");
-//                    txtViewForProductTitle.setText(product.getTitle());
-//                    txtViewForProductPrice.setText(product.getPrice() + "");
-//
-//                    //image loading using Glide
-//                    Glide.with(MainActivity.this)
-//                            .load(product.getThumbnail())
-//                            .placeholder(R.drawable.ic_launcher_background)
-//                            .centerCrop()
-//                            .into(imgViewForProduct);
-
+                    productArrayList.clear();
+                    productArrayList.addAll(response.body().getProducts());
+                    productAdapter.notifyDataSetChanged();          //imp
                 }
             }
 
@@ -61,6 +60,5 @@ public class MainActivity extends AppCompatActivity {
                 t.getMessage();
             }
         });
-
     }
 }
